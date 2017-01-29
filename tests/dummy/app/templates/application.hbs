@@ -1,3 +1,26 @@
-<h2 id="title">Welcome to Ember</h2>
+<h2 id="title">Ember Object Diff</h2>
+<h3>Given this object</h3>
+{{textarea value=stringyObject}}
+<hr>
+<h3>It generates these keys</h3>
+{{#if keysForObject}}
+  {{#each keysForObject as |key|}}
+    <code>{{key}}</code><br>
+  {{/each}}
+{{else}}
+  Hmm, looks like we couldn't generate keys for that object. Is is valid JSON?
+{{/if}}
 
-{{outlet}}
+<hr>
+
+<h3>These are the differences</h3>
+
+{{#if differences}}
+  {{#each differences as |diff|}}
+    <code>{{diff.key}}</code><br>
+    <code> - [{{diff.difference.firstObject}}]</code><br>
+    <code> + [{{diff.difference.lastObject}}]</code><br>
+  {{/each}}
+{{else}}
+  Hmm, looks like we couldn't generate diffs for that object. Is is valid JSON?
+{{/if}}
